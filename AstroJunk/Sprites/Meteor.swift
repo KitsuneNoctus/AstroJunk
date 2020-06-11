@@ -18,11 +18,13 @@ enum MeteorType: String, CaseIterable{
 class Meteor: SKSpriteNode{
     
     init(){
-        let randomTexture =
-        let texture
-        let color
-        let size
+        let randomTexture = MeteorType.allCases.randomElement()!
+        let texture = SKTexture(imageNamed: randomTexture.rawValue)
+        let color = UIColor.clear
+        let size = CGSize(width: 30, height: 30)
         super.init(texture: texture, color: color, size: size)
+        self.name = "meteor"
+        self.zPosition = 2
     }
     
     required init?(coder aDecoder: NSCoder) {

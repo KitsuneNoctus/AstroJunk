@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F2B27DB2492ED36009EA114 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2B27DA2492ED36009EA114 /* GameOverScene.swift */; };
 		3F467CDC2489A89800FB7E38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F467CDB2489A89800FB7E38 /* AppDelegate.swift */; };
 		3F467CE02489A89800FB7E38 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3F467CDF2489A89800FB7E38 /* Actions.sks */; };
 		3F467CE22489A89800FB7E38 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F467CE12489A89800FB7E38 /* GameScene.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F2B27DA2492ED36009EA114 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		3F467CD82489A89800FB7E38 /* AstroJunk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AstroJunk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F467CDB2489A89800FB7E38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F467CDF2489A89800FB7E38 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -84,6 +86,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F2B27DC2492F3F0009EA114 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				3F2B27DA2492ED36009EA114 /* GameOverScene.swift */,
+				3F467CE12489A89800FB7E38 /* GameScene.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		3F467CCF2489A89800FB7E38 = {
 			isa = PBXGroup;
 			children = (
@@ -107,10 +118,10 @@
 		3F467CDA2489A89800FB7E38 /* AstroJunk */ = {
 			isa = PBXGroup;
 			children = (
+				3F2B27DC2492F3F0009EA114 /* Scenes */,
 				3F520B6924904FC900E34012 /* Sprites */,
 				3F467CDB2489A89800FB7E38 /* AppDelegate.swift */,
 				3F467CDF2489A89800FB7E38 /* Actions.sks */,
-				3F467CE12489A89800FB7E38 /* GameScene.swift */,
 				3F467CE32489A89800FB7E38 /* GameViewController.swift */,
 				3F467CE52489A89800FB7E38 /* Main.storyboard */,
 				3F467CE82489A89A00FB7E38 /* Assets.xcassets */,
@@ -282,6 +293,7 @@
 			files = (
 				3F467CE22489A89800FB7E38 /* GameScene.swift in Sources */,
 				3F520B6B2490513000E34012 /* ship.swift in Sources */,
+				3F2B27DB2492ED36009EA114 /* GameOverScene.swift in Sources */,
 				3F467CE42489A89800FB7E38 /* GameViewController.swift in Sources */,
 				3F520B6D2490515300E34012 /* Meteor.swift in Sources */,
 				3F467CDC2489A89800FB7E38 /* AppDelegate.swift in Sources */,

@@ -13,6 +13,10 @@ class GameScene: SKScene {
   
     var ship: SKSpriteNode!
     
+    //MARK: Conditions
+    var score = 0
+    var combo = 0
+    
     //MARK: Game Loop
     override func didMove(to view: SKView) {
         //MARK: Background
@@ -32,29 +36,15 @@ class GameScene: SKScene {
     
     //MARK: Create Ship
     func createShip(){
-        ship = SKSpriteNode(imageNamed: "playerShip")
-        ship.name = "ship"
-        ship.size = CGSize(width: 44, height: 44)
-        ship.position = CGPoint(x: frame.size.width/2, y: frame.size.height/10)
-    
-        ship.zPosition = 2
+        ship = Ship()
+        ship.position = CGPoint(x: frame.size.width/2, y: frame.size.height/8)
         self.addChild(ship)
-        
-        //Ship Move
-        let moveRight = SKAction.moveTo(x: frame.size.width, duration: 3)
-        let moveLeft = SKAction.moveTo(x: 0, duration: 3)
-        let backNForth = SKAction.sequence([moveRight, moveLeft])
-        let alwaysBNF = SKAction.repeatForever(backNForth)
-        ship.run(alwaysBNF)
     }
     
     //MARK: Create Meteor
     func createMeteor(){
         //Meteor
-        let meteor = SKSpriteNode(imageNamed: "meteorGrey_med1")
-        meteor.name = "meteor"
-        meteor.size = CGSize(width: 40, height: 40)
-//        meteor.position = CGPoint(x: 200, y: 300)
+        let meteor = Meteor()
         meteor.position.x = CGFloat.random(in: 0...frame.size.width)
         meteor.position.y = frame.size.height
         meteor.zPosition = 2
@@ -74,29 +64,9 @@ class GameScene: SKScene {
         meteor.run(falling)
     }
     
-    //MARK: Create Beam
-    func createBeam(){
-        
-        let beam = SKSpriteNode(imageNamed: "beam")
-        beam.name = "beam"
-        beam.size = CGSize(width: 20, height: 20)
-        beam.position = CGPoint(x: 100, y: 500)
-        beam.zPosition = 2
-        self.addChild(beam)
-        
-        let moveRight = SKAction.moveTo(x: 300, duration: 5)
-        let moveLeft = SKAction.moveTo(x: -300, duration: 5)
-        let backNForth = SKAction.sequence([moveRight, moveLeft])
-        let alwaysBNF = SKAction.repeatForever(backNForth)
-        beam.run(alwaysBNF)
-    }
-    
     //MARK: Create Junk
     func createJunk(){
-        let junk1 = SKSpriteNode(imageNamed: "wingGreen_6")
-        junk1.name = "junk"
-        junk1.size = CGSize(width: 30, height: 30)
-//        junk1.position = CGPoint(x: 300, y: 450)
+        let junk1 = Junk()
         junk1.position.y = frame.size.height
         junk1.position.x = CGFloat.random(in: 0...frame.size.width)
         junk1.zPosition = 2
@@ -116,10 +86,6 @@ class GameScene: SKScene {
         
     }
     
-    func rotateMovemet(node: SKSpriteNode){
-//        node.run(groupAction)
-    }
-    
     //MARK: Create Meteor and Debris
     func createMeteorAndDebris(){
         let wait = SKAction.wait(forDuration: 2)
@@ -135,6 +101,7 @@ class GameScene: SKScene {
         self.run(fallingObjects)
     }
     
+    //MARK: Collisions
     func collision(with: SKSpriteNode){
         with.removeFromParent()
         print("Junk Collision")
@@ -146,6 +113,7 @@ class GameScene: SKScene {
             let meteorNode = node as! SKSpriteNode
             if meteorNode.frame.intersects(self.ship.frame){
                 self.ship.removeFromParent()
+                self.gameOver()
             }
             
 //            for node in hits{
@@ -169,6 +137,28 @@ class GameScene: SKScene {
             }
         }
     
+    //MARK: Touches Moved
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        let position = touch.location(in: self)
+        let shipPoistion = CGPoint(x: position.x, y: frame.size.height/8)
+        let movement = SKAction.move(to: shipPoistion, duration: 0.4)
+        ship.run(movement)
+    }
+    
+    //MARK: Touches Began
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+    }
+    
+    //MARK: Transistions
+    func gameOver(){
+        let gameOverScene = GameOverScene(size: (self.view?.bounds.size)!)
+        gameOverScene.scaleMode = .aspectFill
+        let crossFade = SKTransition.crossFade(withDuration: 0.75)
+        view?.presentScene(gameOverScene, transition: crossFade)
+    }
+    
     
     
     override func update(_ currentTime: TimeInterval) {
@@ -187,13 +177,8 @@ class GameScene: SKScene {
 //
 //    }
 //
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 //
-//    }
-//
-//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//
-//    }
+    
 //
 //    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 //    }

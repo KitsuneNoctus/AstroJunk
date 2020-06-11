@@ -13,4 +13,16 @@ import GameplayKit
 
 class Ship: SKSpriteNode{
     
+    init() {
+        let texture = SKTexture(imageNamed: "playerShip")
+        let color = UIColor.clear
+        let size = CGSize(width: 44, height: 44)
+        super.init(texture: texture, color: color, size: size)
+        self.name = "ship"
+        self.zPosition = 2
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

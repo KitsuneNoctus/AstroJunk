@@ -25,6 +25,7 @@
 		3F520B6D2490515300E34012 /* Meteor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F520B6C2490515300E34012 /* Meteor.swift */; };
 		3F520B6F2490516800E34012 /* junk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F520B6E2490516800E34012 /* junk.swift */; };
 		3FA4D18324996EA3009ED7B1 /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA4D18224996EA3009ED7B1 /* ButtonNode.swift */; };
+		3FE3816D24998807006EACE9 /* error.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3FE3816C24998807006EACE9 /* error.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		3F520B6C2490515300E34012 /* Meteor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meteor.swift; sourceTree = "<group>"; };
 		3F520B6E2490516800E34012 /* junk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = junk.swift; sourceTree = "<group>"; };
 		3FA4D18224996EA3009ED7B1 /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
+		3FE3816C24998807006EACE9 /* error.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = error.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 		3F47867B2498556F0057409A /* Sound Effects */ = {
 			isa = PBXGroup;
 			children = (
+				3FE3816C24998807006EACE9 /* error.mp3 */,
 				3F478680249857F10057409A /* scifiUI1.mp3 */,
 				3F4786822498584D0057409A /* scifiUI2.mp3 */,
 				3F47867E249856B20057409A /* zap-whoosh.mp3 */,
@@ -299,6 +302,7 @@
 				3F467CE72489A89800FB7E38 /* Main.storyboard in Resources */,
 				3F47867D249855C30057409A /* boom.mp3 in Resources */,
 				3F467CE92489A89A00FB7E38 /* Assets.xcassets in Resources */,
+				3FE3816D24998807006EACE9 /* error.mp3 in Resources */,
 				3F467CEC2489A89A00FB7E38 /* LaunchScreen.storyboard in Resources */,
 				3F47867F249856B20057409A /* zap-whoosh.mp3 in Resources */,
 				3F467CE02489A89800FB7E38 /* Actions.sks in Resources */,

@@ -8,15 +8,25 @@
 
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
 class GameScene: SKScene {
   
     var ship: Ship!
+    let lifeLabel = SKLabelNode()
+    let scoreLabel = SKLabelNode()
     
     //MARK: Conditions
     var lives = 3
     var score = 0
 //    var combo = 0
+    
+    //MARK: Sounds
+    let crash = SKAction.playSoundFileNamed("error.mp3", waitForCompletion: false)
+    let explode = SKAction.playSoundFileNamed("boom.mp3", waitForCompletion: false)
+    let captureSound = SKAction.playSoundFileNamed("zap-whoosh.mp3", waitForCompletion: false)
+    
+    public var SFXPlayer: AVAudioPlayer?
     
     //MARK: Game Loop
     override func didMove(to view: SKView) {
@@ -27,6 +37,7 @@ class GameScene: SKScene {
         self.addChild(space)
         createShip()
         createMeteorAndDebris()
+        createLabel()
     }
     
 //    override func update(_ ti){
@@ -36,6 +47,32 @@ class GameScene: SKScene {
     override func didEvaluateActions() {
         checkCollisions()
         checkJunkCollisions()
+        
+        lifeLabel.text = "Lives: \(lives)"
+        scoreLabel.text = "Score: \(score)"
+        
+        if lives < 0{
+            self.playSoundEffect("boom.mp3")
+            gameOver()
+        }
+    }
+    
+    func createLabel(){
+        lifeLabel.text = "Lives: \(lives)"
+        lifeLabel.fontSize = 20
+        lifeLabel.zPosition = 10
+        lifeLabel.position = CGPoint(x: 20, y: frame.size.height - 20)
+        lifeLabel.horizontalAlignmentMode = .left
+        lifeLabel.verticalAlignmentMode = .top
+        self.addChild(lifeLabel)
+        
+        scoreLabel.text = "Score: \(score)"
+        scoreLabel.fontSize = 20
+        scoreLabel.zPosition = 10
+        scoreLabel.position = CGPoint(x: frame.size.width - 20, y: frame.size.height - 20)
+        scoreLabel.horizontalAlignmentMode = .right
+        scoreLabel.verticalAlignmentMode = .top
+        self.addChild(scoreLabel)
     }
     
     //MARK: Create Ship
@@ -49,45 +86,18 @@ class GameScene: SKScene {
     func createMeteor(){
         //Meteor
         let meteor = Meteor()
-        meteor.position.x = CGFloat.random(in: 0...frame.size.width)
-        meteor.position.y = frame.size.height
+        meteor.moveMeteor(scene: self)
         meteor.zPosition = 2
         self.addChild(meteor)
-        
-        //Meteor Move
-        let turn = SKAction.rotate(byAngle: 20, duration: 1)
-        let spin = SKAction.repeatForever(turn)
-        
-        let moveDown = SKAction.move(to: CGPoint(x: CGFloat.random(in: 0...frame.size.width), y: -10), duration: 4)
-        
-        let remove = SKAction.removeFromParent()
-        let fall = SKAction.sequence([moveDown,remove])
-        let falling = SKAction.group([spin, fall])
-        
-        //        let meteorEvent = SKAction.sequence([movement, gone])
-        meteor.run(falling)
+
     }
     
     //MARK: Create Junk
     func createJunk(){
         let junk1 = Junk()
-        junk1.position.y = frame.size.height
-        junk1.position.x = CGFloat.random(in: 0...frame.size.width)
+        junk1.moveJunk(scene: self)
         junk1.zPosition = 2
         self.addChild(junk1)
-        
-        //Debris Move
-        let turn1 = SKAction.rotate(byAngle: 2, duration: 1)
-        let turn2 = SKAction.rotate(byAngle: -2, duration: 1)
-        let turning = SKAction.sequence([turn1,turn2])
-        let repetition = SKAction.repeatForever(turning)
-        
-        let going = SKAction.move(to: CGPoint(x: CGFloat.random(in: 0...frame.size.width), y: -10), duration: 8)
-        let ending = SKAction.removeFromParent()
-        let repetition2 = SKAction.sequence([going,ending])
-        let traverse = SKAction.group([repetition,repetition2])
-        junk1.run(traverse)
-        
     }
     
     //MARK: Create Meteor and Debris
@@ -108,7 +118,15 @@ class GameScene: SKScene {
     //MARK: Collisions
     func collision(with: SKSpriteNode){
         with.removeFromParent()
+        print("Points: \(self.score)")
         print("Junk Collision")
+    }
+    
+    func Mcollision(with: SKSpriteNode){
+        self.run(crash)
+//        self.playSoundEffect("error.mp3")
+        with.removeFromParent()
+        print("Meteor Collision")
     }
     
     func checkCollisions(){
@@ -117,12 +135,10 @@ class GameScene: SKScene {
             let meteorNode = node as! SKSpriteNode
             if meteorNode.frame.intersects(self.ship.frame){
                 hits.append(meteorNode)
-//                self.ship.removeFromParent()
-//                self.gameOver()
             }
             
             for node in hits{
-                self.collision(with: node)
+                self.Mcollision(with: node)
                 self.lives -= 1
             }
         }
@@ -137,7 +153,9 @@ class GameScene: SKScene {
                 }
                 
                 for node in hits{
-//                    node.removeFromParent()
+                    self.run(self.captureSound)
+//                    self.playSoundEffect("zap-whoosh.mp3")
+                    self.score += 1
                     self.collision(with: node)
                 }
             }
@@ -155,6 +173,30 @@ class GameScene: SKScene {
     //MARK: Touches Began
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
+    }
+    
+    //MARK: Sound Effects
+    public func playSoundEffect(_ filename: String) {
+        let url = Bundle.main.url(forResource: filename, withExtension: nil) // 3)
+        if (url == nil) {
+            print("Could not find file: \(filename)")
+            return
+        }
+        
+        var error: NSError? = nil
+        do {
+            SFXPlayer = try AVAudioPlayer(contentsOf: url!) // 4)
+        } catch let error1 as NSError {
+            error = error1
+            SFXPlayer = nil
+        }
+        if let player = SFXPlayer {
+            player.numberOfLoops = 0 // 5)
+            player.prepareToPlay() // 6)
+            player.play() // 7)
+        } else {
+            print("Could not create audio player: \(error!)")
+        }
     }
     
     //MARK: Transistions

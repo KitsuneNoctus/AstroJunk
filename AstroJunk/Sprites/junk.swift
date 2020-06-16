@@ -37,4 +37,21 @@ class Junk: SKSpriteNode{
         fatalError("init(coder:) has not been implemented")
     }
     
+    func moveJunk(scene: SKScene){
+        if let view = scene.view{
+            position.x = CGFloat.random(in: 0...view.bounds.width)
+            position.y = view.bounds.height
+        }
+        let turn1 = SKAction.rotate(byAngle: 2, duration: 1)
+        let turn2 = SKAction.rotate(byAngle: -2, duration: 1)
+        let turning = SKAction.sequence([turn1,turn2])
+        let repetition = SKAction.repeatForever(turning)
+        
+        let going = SKAction.move(to: CGPoint(x: CGFloat.random(in: 0...frame.size.width), y: -10), duration: 8)
+        let ending = SKAction.removeFromParent()
+        let repetition2 = SKAction.sequence([going,ending])
+        let traverse = SKAction.group([repetition,repetition2])
+        self.run(traverse)
+    }
+    
 }

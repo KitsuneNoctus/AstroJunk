@@ -30,4 +30,24 @@ class Meteor: SKSpriteNode{
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func moveMeteor(scene: SKScene){
+        if let view = scene.view{
+            position.x = CGFloat.random(in: 0...view.bounds.width)
+            position.y = view.bounds.height
+//            meteor.position.x = CGFloat.random(in: 0...frame.size.width)
+//            meteor.position.y = frame.size.height
+        }
+        
+        let turn = SKAction.rotate(byAngle: 20, duration: 1)
+        let spin = SKAction.repeatForever(turn)
+        
+        let moveDown = SKAction.move(to: CGPoint(x: CGFloat.random(in: 0...scene.frame.size.width), y: -10), duration: 4)
+        
+        let remove = SKAction.removeFromParent()
+        let fall = SKAction.sequence([moveDown,remove])
+        let falling = SKAction.group([spin, fall])
+    
+        self.run(falling)
+    }
 }

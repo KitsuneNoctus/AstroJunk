@@ -17,9 +17,14 @@
 		3F467CEC2489A89A00FB7E38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F467CEA2489A89A00FB7E38 /* LaunchScreen.storyboard */; };
 		3F467CF72489A89B00FB7E38 /* AstroJunkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F467CF62489A89B00FB7E38 /* AstroJunkTests.swift */; };
 		3F467D022489A89B00FB7E38 /* AstroJunkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F467D012489A89B00FB7E38 /* AstroJunkUITests.swift */; };
+		3F47867D249855C30057409A /* boom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3F47867C249855C30057409A /* boom.mp3 */; };
+		3F47867F249856B20057409A /* zap-whoosh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3F47867E249856B20057409A /* zap-whoosh.mp3 */; };
+		3F478681249857F10057409A /* scifiUI1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3F478680249857F10057409A /* scifiUI1.mp3 */; };
+		3F4786832498584D0057409A /* scifiUI2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3F4786822498584D0057409A /* scifiUI2.mp3 */; };
 		3F520B6B2490513000E34012 /* ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F520B6A2490513000E34012 /* ship.swift */; };
 		3F520B6D2490515300E34012 /* Meteor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F520B6C2490515300E34012 /* Meteor.swift */; };
 		3F520B6F2490516800E34012 /* junk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F520B6E2490516800E34012 /* junk.swift */; };
+		3FA4D18324996EA3009ED7B1 /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA4D18224996EA3009ED7B1 /* ButtonNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,9 +61,14 @@
 		3F467CFD2489A89B00FB7E38 /* AstroJunkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AstroJunkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F467D012489A89B00FB7E38 /* AstroJunkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstroJunkUITests.swift; sourceTree = "<group>"; };
 		3F467D032489A89B00FB7E38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F47867C249855C30057409A /* boom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = boom.mp3; sourceTree = "<group>"; };
+		3F47867E249856B20057409A /* zap-whoosh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "zap-whoosh.mp3"; sourceTree = "<group>"; };
+		3F478680249857F10057409A /* scifiUI1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = scifiUI1.mp3; sourceTree = "<group>"; };
+		3F4786822498584D0057409A /* scifiUI2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = scifiUI2.mp3; sourceTree = "<group>"; };
 		3F520B6A2490513000E34012 /* ship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ship.swift; sourceTree = "<group>"; };
 		3F520B6C2490515300E34012 /* Meteor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meteor.swift; sourceTree = "<group>"; };
 		3F520B6E2490516800E34012 /* junk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = junk.swift; sourceTree = "<group>"; };
+		3FA4D18224996EA3009ED7B1 /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +105,14 @@
 			path = Scenes;
 			sourceTree = "<group>";
 		};
+		3F2B46B224996FE50086B9BE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3FA4D18224996EA3009ED7B1 /* ButtonNode.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3F467CCF2489A89800FB7E38 = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +136,7 @@
 		3F467CDA2489A89800FB7E38 /* AstroJunk */ = {
 			isa = PBXGroup;
 			children = (
+				3F47867B2498556F0057409A /* Sound Effects */,
 				3F2B27DC2492F3F0009EA114 /* Scenes */,
 				3F520B6924904FC900E34012 /* Sprites */,
 				3F467CDB2489A89800FB7E38 /* AppDelegate.swift */,
@@ -149,9 +168,21 @@
 			path = AstroJunkUITests;
 			sourceTree = "<group>";
 		};
+		3F47867B2498556F0057409A /* Sound Effects */ = {
+			isa = PBXGroup;
+			children = (
+				3F478680249857F10057409A /* scifiUI1.mp3 */,
+				3F4786822498584D0057409A /* scifiUI2.mp3 */,
+				3F47867E249856B20057409A /* zap-whoosh.mp3 */,
+				3F47867C249855C30057409A /* boom.mp3 */,
+			);
+			path = "Sound Effects";
+			sourceTree = "<group>";
+		};
 		3F520B6924904FC900E34012 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				3F2B46B224996FE50086B9BE /* View */,
 				3F520B6A2490513000E34012 /* ship.swift */,
 				3F520B6C2490515300E34012 /* Meteor.swift */,
 				3F520B6E2490516800E34012 /* junk.swift */,
@@ -263,9 +294,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F4786832498584D0057409A /* scifiUI2.mp3 in Resources */,
+				3F478681249857F10057409A /* scifiUI1.mp3 in Resources */,
 				3F467CE72489A89800FB7E38 /* Main.storyboard in Resources */,
+				3F47867D249855C30057409A /* boom.mp3 in Resources */,
 				3F467CE92489A89A00FB7E38 /* Assets.xcassets in Resources */,
 				3F467CEC2489A89A00FB7E38 /* LaunchScreen.storyboard in Resources */,
+				3F47867F249856B20057409A /* zap-whoosh.mp3 in Resources */,
 				3F467CE02489A89800FB7E38 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +331,7 @@
 				3F2B27DB2492ED36009EA114 /* GameOverScene.swift in Sources */,
 				3F467CE42489A89800FB7E38 /* GameViewController.swift in Sources */,
 				3F520B6D2490515300E34012 /* Meteor.swift in Sources */,
+				3FA4D18324996EA3009ED7B1 /* ButtonNode.swift in Sources */,
 				3F467CDC2489A89800FB7E38 /* AppDelegate.swift in Sources */,
 				3F520B6F2490516800E34012 /* junk.swift in Sources */,
 			);

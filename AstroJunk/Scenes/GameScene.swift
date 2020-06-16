@@ -11,11 +11,12 @@ import GameplayKit
 
 class GameScene: SKScene {
   
-    var ship: SKSpriteNode!
+    var ship: Ship!
     
     //MARK: Conditions
+    var lives = 3
     var score = 0
-    var combo = 0
+//    var combo = 0
     
     //MARK: Game Loop
     override func didMove(to view: SKView) {
@@ -25,9 +26,12 @@ class GameScene: SKScene {
         space.position = CGPoint(x: frame.size.width/2, y: frame.size.height/2)
         self.addChild(space)
         createShip()
-        createBeam()
         createMeteorAndDebris()
     }
+    
+//    override func update(_ ti){
+//
+//    }
     
     override func didEvaluateActions() {
         checkCollisions()
@@ -108,17 +112,19 @@ class GameScene: SKScene {
     }
     
     func checkCollisions(){
-//        var hits: [SKSpriteNode] = []
+        var hits: [SKSpriteNode] = []
         self.enumerateChildNodes(withName: "meteor"){ node, _ in
             let meteorNode = node as! SKSpriteNode
             if meteorNode.frame.intersects(self.ship.frame){
-                self.ship.removeFromParent()
-                self.gameOver()
+                hits.append(meteorNode)
+//                self.ship.removeFromParent()
+//                self.gameOver()
             }
             
-//            for node in hits{
-//                self.collision(with: node)
-//            }
+            for node in hits{
+                self.collision(with: node)
+                self.lives -= 1
+            }
         }
     }
     

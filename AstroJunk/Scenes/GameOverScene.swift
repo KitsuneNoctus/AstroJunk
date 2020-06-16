@@ -23,11 +23,16 @@ class GameOverScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        /*
-         Use this method to implement any custom behavior for
-         your scene when it is about to be presented by a view.
-         For example, you might use this method to create the scene’s contents.
-         */
-//        let gameOver =
+        let buttonTexture = SKTexture(imageNamed: "button")
+        let buttonSelected = SKTexture(imageNamed: "button2")
+        
+        let button = ButtonNode(normalTexture: buttonTexture, selectedTexture: buttonSelected, disabledTexture: buttonTexture)
+        button.setButtonAction(target: self, triggerEvent: .TouchUpInside, action: #selector(GameOverScene.buttonTap))
+        button.setButtonLabel(title: "Play Again", font: "Helvetica", fontSize: 20)
+        button.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+    }
+    
+    @objc func buttonTap(){
+        
     }
 }

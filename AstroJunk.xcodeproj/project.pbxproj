@@ -24,6 +24,9 @@
 		3F520B6B2490513000E34012 /* ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F520B6A2490513000E34012 /* ship.swift */; };
 		3F520B6D2490515300E34012 /* Meteor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F520B6C2490515300E34012 /* Meteor.swift */; };
 		3F520B6F2490516800E34012 /* junk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F520B6E2490516800E34012 /* junk.swift */; };
+		3F7336CB249C118000BFDCA2 /* boosterFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3F7336C9249C118000BFDCA2 /* boosterFire.sks */; };
+		3F7336CC249C118000BFDCA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F7336CA249C118000BFDCA2 /* Assets.xcassets */; };
+		3F7336CE249C25B400BFDCA2 /* mExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3F7336CD249C25B400BFDCA2 /* mExplosion.sks */; };
 		3FA4D18324996EA3009ED7B1 /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA4D18224996EA3009ED7B1 /* ButtonNode.swift */; };
 		3FE3816D24998807006EACE9 /* error.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3FE3816C24998807006EACE9 /* error.mp3 */; };
 /* End PBXBuildFile section */
@@ -69,6 +72,9 @@
 		3F520B6A2490513000E34012 /* ship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ship.swift; sourceTree = "<group>"; };
 		3F520B6C2490515300E34012 /* Meteor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meteor.swift; sourceTree = "<group>"; };
 		3F520B6E2490516800E34012 /* junk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = junk.swift; sourceTree = "<group>"; };
+		3F7336C9249C118000BFDCA2 /* boosterFire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = boosterFire.sks; sourceTree = "<group>"; };
+		3F7336CA249C118000BFDCA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3F7336CD249C25B400BFDCA2 /* mExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = mExplosion.sks; sourceTree = "<group>"; };
 		3FA4D18224996EA3009ED7B1 /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		3FE3816C24998807006EACE9 /* error.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = error.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +144,7 @@
 		3F467CDA2489A89800FB7E38 /* AstroJunk */ = {
 			isa = PBXGroup;
 			children = (
+				3F7336C8249C112B00BFDCA2 /* Particles */,
 				3F47867B2498556F0057409A /* Sound Effects */,
 				3F2B27DC2492F3F0009EA114 /* Scenes */,
 				3F520B6924904FC900E34012 /* Sprites */,
@@ -191,6 +198,16 @@
 				3F520B6E2490516800E34012 /* junk.swift */,
 			);
 			path = Sprites;
+			sourceTree = "<group>";
+		};
+		3F7336C8249C112B00BFDCA2 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				3F7336C9249C118000BFDCA2 /* boosterFire.sks */,
+				3F7336CA249C118000BFDCA2 /* Assets.xcassets */,
+				3F7336CD249C25B400BFDCA2 /* mExplosion.sks */,
+			);
+			path = Particles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,13 +316,16 @@
 			files = (
 				3F4786832498584D0057409A /* scifiUI2.mp3 in Resources */,
 				3F478681249857F10057409A /* scifiUI1.mp3 in Resources */,
+				3F7336CC249C118000BFDCA2 /* Assets.xcassets in Resources */,
 				3F467CE72489A89800FB7E38 /* Main.storyboard in Resources */,
 				3F47867D249855C30057409A /* boom.mp3 in Resources */,
 				3F467CE92489A89A00FB7E38 /* Assets.xcassets in Resources */,
 				3FE3816D24998807006EACE9 /* error.mp3 in Resources */,
 				3F467CEC2489A89A00FB7E38 /* LaunchScreen.storyboard in Resources */,
 				3F47867F249856B20057409A /* zap-whoosh.mp3 in Resources */,
+				3F7336CB249C118000BFDCA2 /* boosterFire.sks in Resources */,
 				3F467CE02489A89800FB7E38 /* Actions.sks in Resources */,
+				3F7336CE249C25B400BFDCA2 /* mExplosion.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

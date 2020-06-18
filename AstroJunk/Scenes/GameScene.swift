@@ -40,16 +40,15 @@ class GameScene: SKScene {
         createLabel()
     }
     
-//    override func update(_ ti){
-//
-//    }
+    override func update(_ currentTime: TimeInterval){
+        lifeLabel.text = "Lives: \(lives)"
+        scoreLabel.text = "Score: \(score)"
+    }
     
     override func didEvaluateActions() {
         checkCollisions()
         checkJunkCollisions()
         
-        lifeLabel.text = "Lives: \(lives)"
-        scoreLabel.text = "Score: \(score)"
         
         if lives < 0{
             self.playSoundEffect("boom.mp3")
@@ -124,8 +123,15 @@ class GameScene: SKScene {
     
     func Mcollision(with: SKSpriteNode){
         self.run(crash)
-//        self.playSoundEffect("error.mp3")
+        //        self.playSoundEffect("error.mp3")
+        let pso = with.position
         with.removeFromParent()
+        
+        let mplosion = SKEmitterNode(fileNamed: "mExplosion.sks")!
+        mplosion.position = pso
+        mplosion.zPosition = 1
+        self.addChild(mplosion)
+        
         print("Meteor Collision")
     }
     
@@ -136,30 +142,30 @@ class GameScene: SKScene {
             if meteorNode.frame.intersects(self.ship.frame){
                 hits.append(meteorNode)
             }
-            
-            for node in hits{
-                self.Mcollision(with: node)
-                self.lives -= 1
-            }
+        }
+        
+        for node in hits{
+            self.Mcollision(with: node)
+            self.lives -= 1
         }
     }
     
     func checkJunkCollisions(){
-            var hits: [SKSpriteNode] = []
-            self.enumerateChildNodes(withName: "junk"){ node, _ in
-                let junkNode = node as! SKSpriteNode
-                if junkNode.frame.intersects(self.ship.frame){
-                    hits.append(junkNode)
-                }
-                
-                for node in hits{
-                    self.run(self.captureSound)
-//                    self.playSoundEffect("zap-whoosh.mp3")
-                    self.score += 1
-                    self.collision(with: node)
-                }
+        var hits: [SKSpriteNode] = []
+        self.enumerateChildNodes(withName: "junk"){ node, _ in
+            let junkNode = node as! SKSpriteNode
+            if junkNode.frame.intersects(self.ship.frame){
+                hits.append(junkNode)
             }
         }
+        
+        for node in hits{
+            self.run(self.captureSound)
+            //                    self.playSoundEffect("zap-whoosh.mp3")
+            self.score += 1
+            self.collision(with: node)
+        }
+    }
     
     //MARK: Touches Moved
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -205,12 +211,6 @@ class GameScene: SKScene {
         gameOverScene.scaleMode = .aspectFill
         let crossFade = SKTransition.crossFade(withDuration: 0.75)
         view?.presentScene(gameOverScene, transition: crossFade)
-    }
-    
-    
-    
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
     }
     
 //    func touchDown(atPoint pos : CGPoint) {

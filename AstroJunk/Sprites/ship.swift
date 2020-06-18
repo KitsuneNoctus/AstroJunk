@@ -19,7 +19,14 @@ class Ship: SKSpriteNode{
         let size = CGSize(width: 44, height: 44)
         super.init(texture: texture, color: color, size: size)
         self.name = "ship"
-        self.zPosition = 2
+        self.zPosition = 4
+        
+        let fireEmitter = SKEmitterNode(fileNamed: "boosterFire.sks")!
+        fireEmitter.position = CGPoint(x: self.position.x, y: self.position.y - self.size.height/2)
+//        fireEmitter.particleColor = .blue
+        fireEmitter.zPosition = -1
+        self.addChild(fireEmitter)
+
     }
     
     required init?(coder aDecoder: NSCoder) {

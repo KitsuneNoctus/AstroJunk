@@ -12,6 +12,7 @@ class GameOverScene: SKScene {
     
     let overLabel = SKLabelNode()
     let scoreLabel = SKLabelNode()
+    var endScore = 0
     
     let screen = SKAction.playSoundFileNamed("scifiUI1.mp3", waitForCompletion: true)
     
@@ -34,10 +35,25 @@ class GameOverScene: SKScene {
         space.position = CGPoint(x: frame.size.width/2, y: frame.size.height/2)
         self.addChild(space)
         createButton()
+        createLabels()
     }
     
     func createLabels(){
+        overLabel.text = "Game Over"
+        overLabel.fontSize = 40
+        overLabel.zPosition = 5
+        overLabel.position = CGPoint(x: frame.size.width/2, y: self.frame.midY + 100)
+        overLabel.horizontalAlignmentMode = .center
+        overLabel.verticalAlignmentMode = .center
+        self.addChild(overLabel)
         
+        scoreLabel.text = "Final Score: \(endScore)"
+        scoreLabel.fontSize = 30
+        scoreLabel.zPosition = 5
+        scoreLabel.position = CGPoint(x: frame.size.width/2, y: self.frame.midY - 85)
+        scoreLabel.horizontalAlignmentMode = .center
+        scoreLabel.verticalAlignmentMode = .center
+        self.addChild(scoreLabel)
     }
     
     func createButton(){
@@ -49,7 +65,7 @@ class GameOverScene: SKScene {
         button.setButtonAction(target: self, triggerEvent: .TouchUpInside, action: #selector(GameOverScene.buttonTap))
         button.setButtonLabel(title: "Play Again", font: "Helvetica", fontSize: 20)
         button.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
-        button.zPosition = 2
+        button.zPosition = 20
         button.name = "button"
         self.addChild(button)
     }

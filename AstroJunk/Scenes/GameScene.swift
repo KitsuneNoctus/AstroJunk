@@ -209,6 +209,7 @@ class GameScene: SKScene {
     func gameOver(){
         let gameOverScene = GameOverScene(size: (self.view?.bounds.size)!)
         gameOverScene.scaleMode = .aspectFill
+        gameOverScene.endScore = self.score
         let crossFade = SKTransition.crossFade(withDuration: 0.75)
         view?.presentScene(gameOverScene, transition: crossFade)
     }

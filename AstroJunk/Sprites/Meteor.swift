@@ -25,6 +25,14 @@ class Meteor: SKSpriteNode{
         super.init(texture: texture, color: color, size: size)
         self.name = "meteor"
         self.zPosition = 2
+        
+        //Physics
+        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2)
+        self.physicsBody?.isDynamic = true
+        self.physicsBody?.categoryBitMask = PhysicsCategory.Meteor
+        self.physicsBody?.collisionBitMask = PhysicsCategory.Ship
+        self.physicsBody?.contactTestBitMask = PhysicsCategory.Ship
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,19 +43,17 @@ class Meteor: SKSpriteNode{
         if let view = scene.view{
             position.x = CGFloat.random(in: 0...view.bounds.width)
             position.y = view.bounds.height
-//            meteor.position.x = CGFloat.random(in: 0...frame.size.width)
-//            meteor.position.y = frame.size.height
         }
         
-        let turn = SKAction.rotate(byAngle: 20, duration: 1)
-        let spin = SKAction.repeatForever(turn)
-        
-        let moveDown = SKAction.move(to: CGPoint(x: CGFloat.random(in: 0...scene.frame.size.width), y: -10), duration: 4)
-        
-        let remove = SKAction.removeFromParent()
-        let fall = SKAction.sequence([moveDown,remove])
-        let falling = SKAction.group([spin, fall])
-    
-        self.run(falling)
+//        let turn = SKAction.rotate(byAngle: 20, duration: 1)
+//        let spin = SKAction.repeatForever(turn)
+//        
+//        let moveDown = SKAction.move(to: CGPoint(x: CGFloat.random(in: 0...scene.frame.size.width), y: -10), duration: 4)
+//        
+//        let remove = SKAction.removeFromParent()
+//        let fall = SKAction.sequence([moveDown,remove])
+//        let falling = SKAction.group([spin, fall])
+//    
+//        self.run(falling)
     }
 }

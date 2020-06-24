@@ -29,6 +29,7 @@
 		3F7336CE249C25B400BFDCA2 /* mExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3F7336CD249C25B400BFDCA2 /* mExplosion.sks */; };
 		3FA4D18324996EA3009ED7B1 /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA4D18224996EA3009ED7B1 /* ButtonNode.swift */; };
 		3FE3816D24998807006EACE9 /* error.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3FE3816C24998807006EACE9 /* error.mp3 */; };
+		3FEBBA7024A2BCA300D5C399 /* PhysicsCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEBBA6F24A2BCA300D5C399 /* PhysicsCategories.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		3F7336CD249C25B400BFDCA2 /* mExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = mExplosion.sks; sourceTree = "<group>"; };
 		3FA4D18224996EA3009ED7B1 /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		3FE3816C24998807006EACE9 /* error.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = error.mp3; sourceTree = "<group>"; };
+		3FEBBA6F24A2BCA300D5C399 /* PhysicsCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategories.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 		3F467CDA2489A89800FB7E38 /* AstroJunk */ = {
 			isa = PBXGroup;
 			children = (
+				3FEBBA6E24A2BC8500D5C399 /* Model */,
 				3F7336C8249C112B00BFDCA2 /* Particles */,
 				3F47867B2498556F0057409A /* Sound Effects */,
 				3F2B27DC2492F3F0009EA114 /* Scenes */,
@@ -208,6 +211,14 @@
 				3F7336CD249C25B400BFDCA2 /* mExplosion.sks */,
 			);
 			path = Particles;
+			sourceTree = "<group>";
+		};
+		3FEBBA6E24A2BC8500D5C399 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3FEBBA6F24A2BCA300D5C399 /* PhysicsCategories.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,6 +368,7 @@
 				3F520B6D2490515300E34012 /* Meteor.swift in Sources */,
 				3FA4D18324996EA3009ED7B1 /* ButtonNode.swift in Sources */,
 				3F467CDC2489A89800FB7E38 /* AppDelegate.swift in Sources */,
+				3FEBBA7024A2BCA300D5C399 /* PhysicsCategories.swift in Sources */,
 				3F520B6F2490516800E34012 /* junk.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 import AVFoundation
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
   
     var ship: Ship!
     let lifeLabel = SKLabelNode()
@@ -23,7 +23,7 @@ class GameScene: SKScene {
     
     //MARK: Sounds
     let crash = SKAction.playSoundFileNamed("error.mp3", waitForCompletion: false)
-    let explode = SKAction.playSoundFileNamed("boom.mp3", waitForCompletion: false)
+//    let explode = SKAction.playSoundFileNamed("boom.mp3", waitForCompletion: false)
     let captureSound = SKAction.playSoundFileNamed("zap-whoosh.mp3", waitForCompletion: false)
     
     public var SFXPlayer: AVAudioPlayer?
@@ -35,6 +35,11 @@ class GameScene: SKScene {
         space.size = UIScreen.main.bounds.size
         space.position = CGPoint(x: frame.size.width/2, y: frame.size.height/2)
         self.addChild(space)
+        
+        physicsWorld.contactDelegate = self
+        physicsWorld.gravity = CGVector(dx: 0, dy: -1.0)
+//        let physicsBody = SKPhysicsBody(edgeLoopFrom: )
+        
         createShip()
         createMeteorAndDebris()
         createLabel()
@@ -46,9 +51,8 @@ class GameScene: SKScene {
     }
     
     override func didEvaluateActions() {
-        checkCollisions()
-        checkJunkCollisions()
-        
+//        checkCollisions()
+//        checkJunkCollisions()
         
         if lives < 0{
             self.playSoundEffect("boom.mp3")
@@ -56,6 +60,8 @@ class GameScene: SKScene {
         }
     }
     
+    
+    //MARK: Create Label
     func createLabel(){
         lifeLabel.text = "Lives: \(lives)"
         lifeLabel.fontSize = 20
@@ -112,6 +118,48 @@ class GameScene: SKScene {
         let objects = SKAction.sequence([wait,createObject])
         let fallingObjects = SKAction.repeatForever(objects)
         self.run(fallingObjects)
+    }
+    
+    //MARK: Physics Collision
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        //1
+        let collision: UInt32 = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+        
+        //2
+        if collision == PhysicsCategory.Ship | PhysicsCategory.Junk {
+            print("Collision with Junk")
+            self.score += 1
+            self.run(captureSound)
+            
+            if (contact.bodyA.node?.isKind(of: Junk.self))!{
+                contact.bodyA.node?.removeFromParent()
+            }else if (contact.bodyB.node?.isKind(of: Junk.self))!{
+                contact.bodyB.node?.removeFromParent()
+            }
+
+        }else if collision == PhysicsCategory.Ship | PhysicsCategory.Meteor {
+            print("Collision with Meteor")
+            self.lives -= 1
+            self.run(crash)
+            
+            if (contact.bodyA.node?.isKind(of: Meteor.self))!{
+                let pso = contact.bodyA.node?.position
+                let mplosion = SKEmitterNode(fileNamed: "mExplosion.sks")!
+                mplosion.position = pso!
+                mplosion.zPosition = 1
+                self.addChild(mplosion)
+                contact.bodyA.node?.removeFromParent()
+            }else if (contact.bodyB.node?.isKind(of: Meteor.self))!{
+                let pso = contact.bodyB.node?.position
+                let mplosion = SKEmitterNode(fileNamed: "mExplosion.sks")!
+                mplosion.position = pso!
+                mplosion.zPosition = 1
+                self.addChild(mplosion)
+                contact.bodyB.node?.removeFromParent()
+            }
+
+        }
     }
     
     //MARK: Collisions

@@ -26,6 +26,13 @@ class Ship: SKSpriteNode{
 //        fireEmitter.particleColor = .blue
         fireEmitter.zPosition = -1
         self.addChild(fireEmitter)
+        
+        //Physics
+        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2)
+        self.physicsBody?.isDynamic = false
+        self.physicsBody?.categoryBitMask = PhysicsCategory.Ship
+//        self.physicsBody?.collisionBitMask = PhysicsCategory.Meteor | PhysicsCategory.Junk
+//        meteor.physicsBody!.contactTestBitMask = PhysicsCategory.Ship
 
     }
     

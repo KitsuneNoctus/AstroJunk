@@ -31,6 +31,13 @@ class Junk: SKSpriteNode{
         super.init(texture: texture, color: color, size: size)
         self.name = "junk"
         self.zPosition = 2
+        
+        //Physics
+        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2)
+                self.physicsBody?.isDynamic = true
+        self.physicsBody?.categoryBitMask = PhysicsCategory.Junk
+        self.physicsBody?.collisionBitMask = PhysicsCategory.Ship
+        self.physicsBody?.contactTestBitMask = PhysicsCategory.Ship
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,16 +49,16 @@ class Junk: SKSpriteNode{
             position.x = CGFloat.random(in: 0...view.bounds.width)
             position.y = view.bounds.height
         }
-        let turn1 = SKAction.rotate(byAngle: 2, duration: 1)
-        let turn2 = SKAction.rotate(byAngle: -2, duration: 1)
-        let turning = SKAction.sequence([turn1,turn2])
-        let repetition = SKAction.repeatForever(turning)
-        
-        let going = SKAction.move(to: CGPoint(x: CGFloat.random(in: 0...frame.size.width), y: -10), duration: 8)
-        let ending = SKAction.removeFromParent()
-        let repetition2 = SKAction.sequence([going,ending])
-        let traverse = SKAction.group([repetition,repetition2])
-        self.run(traverse)
+//        let turn1 = SKAction.rotate(byAngle: 2, duration: 1)
+//        let turn2 = SKAction.rotate(byAngle: -2, duration: 1)
+//        let turning = SKAction.sequence([turn1,turn2])
+//        let repetition = SKAction.repeatForever(turning)
+//        
+//        let going = SKAction.move(to: CGPoint(x: CGFloat.random(in: 0...frame.size.width), y: -10), duration: 8)
+//        let ending = SKAction.removeFromParent()
+//        let repetition2 = SKAction.sequence([going,ending])
+//        let traverse = SKAction.group([repetition,repetition2])
+//        self.run(traverse)
     }
     
 }

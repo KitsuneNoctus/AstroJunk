@@ -36,6 +36,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         space.position = CGPoint(x: frame.size.width/2, y: frame.size.height/2)
         self.addChild(space)
         
+        let playRect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height + 100)
+        
+        scene?.physicsBody = SKPhysicsBody(edgeLoopFrom: playRect)
+        scene?.physicsBody?.categoryBitMask = PhysicsCategory.Edge
+        
         physicsWorld.contactDelegate = self
         physicsWorld.gravity = CGVector(dx: 0, dy: -1.0)
 //        let physicsBody = SKPhysicsBody(edgeLoopFrom: )
@@ -159,6 +164,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 contact.bodyB.node?.removeFromParent()
             }
 
+        }else if collision == PhysicsCategory.Meteor | PhysicsCategory.Edge{
+            print("Meteor Hits edge")
+            if (contact.bodyA.node?.isKind(of: Meteor.self))!{
+                contact.bodyA.node?.removeFromParent()
+            }else if (contact.bodyB.node?.isKind(of: Meteor.self))!{
+                contact.bodyB.node?.removeFromParent()
+            }
+        }else if collision == PhysicsCategory.Junk | PhysicsCategory.Edge{
+            print("Junk Hits edge")
+            if (contact.bodyA.node?.isKind(of: Junk.self))!{
+                contact.bodyA.node?.removeFromParent()
+            }else if (contact.bodyB.node?.isKind(of: Junk.self))!{
+                contact.bodyB.node?.removeFromParent()
+            }
         }
     }
     

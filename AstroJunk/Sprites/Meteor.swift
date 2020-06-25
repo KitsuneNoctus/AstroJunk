@@ -30,9 +30,8 @@ class Meteor: SKSpriteNode{
         self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width/2)
         self.physicsBody?.isDynamic = true
         self.physicsBody?.categoryBitMask = PhysicsCategory.Meteor
-        self.physicsBody?.collisionBitMask = PhysicsCategory.Ship
-        self.physicsBody?.contactTestBitMask = PhysicsCategory.Ship
-        
+        self.physicsBody?.collisionBitMask = PhysicsCategory.Ship | PhysicsCategory.Edge
+        self.physicsBody?.contactTestBitMask = PhysicsCategory.Ship | PhysicsCategory.Edge
     }
     
     required init?(coder aDecoder: NSCoder) {
